@@ -1,0 +1,11 @@
+.test{
+	background-color: #ffe4c4;
+}
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+}

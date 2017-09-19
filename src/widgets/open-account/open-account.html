@@ -1,0 +1,230 @@
+<div class="container" data-ng-controller="openAccountController as openAccountController">
+    <!-- master -->
+    <form class="form-horizontal well" data-ng-if="(openAccountController.userType === 'master')">
+        <div class="row">
+            <label class="control-label col-sm-2" for="email">Employee Name</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">John Smith</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-sm-2" for="email">Employee Id</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">121-121-11-12</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-sm-2" for="email">Employee email</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">johnsmith@blblaBank.com</p>
+            </div>
+        </div>
+    </form>
+    <!-- slave -->
+    <form class="form-horizontal well" data-ng-if="(openAccountController.userType === 'slave')">
+        <div class="row">
+            <label class="control-label col-sm-2" for="email">Customer Name</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">Persona Name</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-sm-2" for="email">Customer Id</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">121-121-11-12</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="control-label col-sm-2" for="email">Customer email</label>
+            <div class="col-sm-10">
+                <p class="form-control-static">johnsmith@blblaBank.com</p>
+            </div>
+        </div>
+    </form>
+    <!-- manage Accounts -->
+    <div class="text-center" data-ng-if="(openAccountController.userType === 'master')">
+        <h3 align="left">Manage Accounts</h3>
+    </div>
+    <div class="formHolder">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" data-target="#openPaymentAccount">Open Payment Account</a>
+              </h4>
+                </div>
+                <div id="openPaymentAccount" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="formBody">
+                            <form class="form-horizontal" novalidate="novalidate">
+                                <!-- Bc Number -->
+                                <div class="form-group" data-ng-if="(openAccountController.userType === 'master')">
+                                    <label class="col-sm-4 control-label" for="bcNumber">BC Number</label>
+                                    <div class="col-sm-4">
+                                        <input class="form-control" name="bcNumber" data-ng-model="openAccObj.bcNumber" type="text" id="bcNumber" maxlength="10" placeholder="BcNumber">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" id="RegisterBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Start Co-browsing</button>
+                                    </div>
+                                </div>
+                                <!-- product name -->
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label" for="productName">Product Name</label>
+                                    <div class="col-md-6">
+                                        <p class="form-control-static">Fixed Account</p>
+                                    </div>
+                                </div>
+                                <!-- Duration -->
+                                <div class="form-group" data-ng-class="(focusElement == 'duration') ? 'has-success': ''">
+                                    <label class="col-sm-4 control-label" for="duration">Duration</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="duration" data-ng-model="openAccObj.duration" data-ng-change="openAccountController.onOpenConnection('duration');">
+                                            <option value="">Select</option>
+                                            <option value="1">0 - 6 months</option>
+                                            <option value="2">1 - 2 years</option>
+                                            <option value="3">3 - 5 years</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Intial deposit -->
+                                <div class="form-group" data-ng-class="(focusElement == 'intialdeposit') ? 'has-success': ''">
+                                    <label class="col-sm-4 control-label" for="intialdeposit">Intial Deposit</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" placeholder="€ 00.00" type="text" name="intialdeposit" data-ng-model="openAccObj.intialdeposit" data-ng-change="openAccountController.onOpenConnection('intialdeposit');">
+                                    </div>
+                                </div>
+                                <!-- Intrest Settlement -->
+                                <div class="form-group" data-ng-class="(focusElement == 'intrestsettlement') ? 'has-success': ''">
+                                    <label class="col-sm-4 control-label" for="intrestsettlement">Intrest Settlement</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="intrestsettlement" data-ng-model="openAccObj.intrestSettlement" data-ng-change="openAccountController.onOpenConnection('intrestSettlement');">
+                                            <option value="">Select</option>
+                                            <option value="531">531.950.6912</option>
+                                            <option value="950">950.269.3423</option>
+                                            <option value="850">850.053.1265</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Capital Settlement -->
+                                <div class="form-group" data-ng-class="(focusElement == 'capitalsettlement') ? 'has-success': ''">
+                                    <label class="col-sm-4 control-label" for="capitalsettlement">Capital Settlement</label>
+                                    <div class="col-sm-6">
+                                        <select class="form-control" name="intrestsettlement" data-ng-model="openAccObj.capitalsettlement" data-ng-change="openAccountController.onOpenConnection('capitalsettlement');">
+                                            <option value="">Select</option>
+                                            <option value="432">423.890.1256</option>
+                                            <option value="893">893.456.5432</option>
+                                            <option value="546">546.324.6582</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- email -->
+                                <div class="form-group" data-ng-class="(focusElement == 'email') ? 'has-success': ''">
+                                    <label class="col-sm-4 control-label" for="email">Email</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control" name="email" placeholder="xyz@abc.com" id="email" data-ng-model="openAccObj.email" type="text" data-ng-change="openAccountController.onOpenConnection('email');">
+                                    </div>
+                                </div>
+                                <!-- start date -->
+                                <div class="form-group" data-ng-class="(focusElement == 'startDate') ? 'has-success': ''">
+                                    <label class="col-sm-4 control-label" for="startDate">Start Date</label>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" placholder="" name="startDate" data-ng-model="openAccObj.startDate" data-ng-change="openAccountController.onOpenConnection('startDate');">
+                                    </div>
+                                </div>
+                                <!-- end date -->
+                                <div class="form-group" data-ng-class="(focusElement == 'endDate') ? 'has-success': ''">
+                                    <label class="col-sm-4 control-label" for="startDate">End Date</label>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" name="endDate" placeholder=""  data-ng-model="openAccObj.endDate" data-ng-change="openAccountController.onOpenConnection('endDate');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-4 col-sm-6">
+                                      <button type="submit" class="btn btn-default">submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" data-ng-if="(openAccountController.userType === 'master')">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" data-target="#collapseTwo">Open Fixed Savings</a>
+              </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>would permit you to start a fixed deposit without savings account in the bank. Interest proceeds are transferred to your savings account through NEFT. However many nationalized banks don't allow opening a fixed deposit without opening a savings account with them.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" data-ng-if="(openAccountController.userType === 'master')">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" data-target="#collapseThree">Change Address</a>
+              </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" data-ng-if="(openAccountController.userType === 'master')">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                 <a data-toggle="collapse" data-parent="#accordion" href="javascript:void(0)" data-target="#collapseFour">Change Nominee Details</a>
+              </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <form class="form-horizontal" novalidate="novalidate">
+                          <!-- email -->
+                              <div class="form-group" data-ng-class="(focusElement == 'email') ? 'has-success': ''">
+                                  <label class="col-sm-4 control-label" for="email">Email</label>
+                                  <div class="col-md-6">
+                                      <input class="form-control" name="email" placeholder="xyz@abc.com" id="email" data-ng-model="openAccObj.email" type="text" data-ng-change="openAccountController.onOpenConnection('email');">
+                                  </div>
+                              </div>
+                              <!-- email -->
+                              <div class="form-group" data-ng-class="(focusElement == 'email') ? 'has-success': ''">
+                                  <label class="col-sm-4 control-label" for="email">Email</label>
+                                  <div class="col-md-6">
+                                      <input class="form-control" name="email" placeholder="xyz@abc.com" id="email" data-ng-model="openAccObj.email" type="text" data-ng-change="openAccountController.onOpenConnection('email');">
+                                  </div>
+                              </div>
+                              <!-- email -->
+                              <div class="form-group" data-ng-class="(focusElement == 'email') ? 'has-success': ''">
+                                  <label class="col-sm-4 control-label" for="email">Email</label>
+                                  <div class="col-md-6">
+                                      <input class="form-control" name="email" placeholder="xyz@abc.com" id="email" data-ng-model="openAccObj.email" type="text" data-ng-change="openAccountController.onOpenConnection('email');">
+                                  </div>
+                              </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Copy below url</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p align="center">{{openAccountController.openAccUrl}}</p>
+                    </div>
+                    <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
